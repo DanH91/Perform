@@ -1,0 +1,28 @@
+{
+  "name": "perform",
+  "version": "0.0.1",
+  "description": "Web worker mini library",
+  "main": "perform.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanH91/Perform.git"
+  },
+  "keywords": [
+    "Web",
+    "worker",
+    "tasks",
+    "thread"
+  ],
+  "author": "DanH91",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanH91/Perform/issues"
+  },
+  "homepage": "https://github.com/DanH91/Perform#readme"
+}
