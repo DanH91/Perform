@@ -1,28 +1,26 @@
 {
-  "name": "perform",
-  "version": "0.0.1",
-  "description": "Web worker mini library",
-  "main": "perform.js",
-  "directories": {
-    "test": "test"
+  "jspm": {
+    "dependencies": {
+      "lodash-fp": "npm:lodash-fp@^0.10.4",
+      "sinon": "npm:sinon@^1.17.4"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "chai": "npm:chai@^3.4.0",
+      "core-js": "npm:core-js@^1.1.4"
+    }
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "jspm": "^0.16.13",
+    "karma": "^0.13.14",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-jspm": "^2.0.2",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^2.0.3",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DanH91/Perform.git"
-  },
-  "keywords": [
-    "Web",
-    "worker",
-    "tasks",
-    "thread"
-  ],
-  "author": "DanH91",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/DanH91/Perform/issues"
-  },
-  "homepage": "https://github.com/DanH91/Perform#readme"
+  "dependencies": {}
 }
