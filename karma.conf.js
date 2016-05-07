@@ -14,13 +14,15 @@ module.exports = function(config) {
 
 
 	// list of files / patterns to load in the browser
-	files: [
-	],
+	files: [],
 	
 	jspm: {
-	    loadFiles: [
-		'src/**/*.js', 
-		'test/**/*.js'
+	    loadFiles: [ 
+		'test/**/*.spec.js'
+	    ],
+	    serveFiles: [
+		'src/**/*.js',
+		'test/worker_script.js'
 	    ]
 	},
 
@@ -65,6 +67,11 @@ module.exports = function(config) {
 	// start these browsers
 	// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
 	browsers: ['Chrome'],
+
+	customHeaders: [{
+	    name: 'Service-Worker-Allowed',
+	    value: '/'
+	}],
 
 
 	// Continuous Integration mode

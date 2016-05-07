@@ -2,10 +2,20 @@ import _ from 'lodash-fp';
 
 export default (()=>{
     return {
-	Initialize
+	Initialize,
+	create
     };
 })();
 
+function create(script){
+    let w = new window.Worker(script);
+    return {
+	subscribe(callback){
+	    w.onmessage = callback;
+	}
+    };
+}
+
 function Initialize(){
-    return _.isFunction(Worker);
+    return _.isFunction(window.Worker);
 }
