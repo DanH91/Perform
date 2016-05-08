@@ -15,7 +15,6 @@ System.config({
   bundles: {
     "perform.js": [
       "src/index.js",
-      "package.json!github:systemjs/plugin-json@0.1.2.js",
       "src/core/index.js",
       "npm:rxjs@5.0.0-beta.7.js",
       "npm:rxjs@5.0.0-beta.7/Rx.js",
@@ -860,7 +859,6 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "chai": "npm:chai@3.5.0",
     "core-js": "npm:core-js@1.2.6",
-    "json": "github:systemjs/plugin-json@0.1.2",
     "lodash-fp": "npm:lodash-fp@0.10.4",
     "mocha": "npm:mocha@2.4.5",
     "rxjs": "npm:rxjs@5.0.0-beta.7",

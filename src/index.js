@@ -1,10 +1,13 @@
 import _ from 'lodash-fp';
 import Core from './core/index';
-import config from '../package.json!json';
 
 export let Perform = _.assign({
-  version: config.version,
-  author: config.author
+  version: "0.0.19",
+  author: "Danh91"
 }, Core);
 
-window.Perform = Perform;
+var root = typeof self === 'object' && self.self === self && self;
+
+if (root) {
+  root.Perform = Perform;
+}
