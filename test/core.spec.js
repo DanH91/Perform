@@ -14,14 +14,15 @@ describe('Core', () => {
     });
   });
 
-  // timeout failure is expected if the function don't work properly
-  it('should spawn a new worker', function(done) {
-    let thread = Core.spawn('/base/test/worker_script.js');
-    let spy = sinon.spy();
-    thread.subscribe(spy);
-    window.setTimeout(function() {
-      expect(spy.called).to.equal(true);
-      done();
-    }, 500);
+  describe('spawn()', () => {
+    it('should spawn a new worker', function(done) {
+      let thread = Core.spawn('/base/test/worker_script.js');
+      let spy = sinon.spy();
+      thread.map(spy);
+      window.setTimeout(function() {
+        expect(spy.called).to.equal(true);
+        done();
+      }, 500);
+    });
   });
 });
