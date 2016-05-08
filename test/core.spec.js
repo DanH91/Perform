@@ -25,13 +25,26 @@ describe('spawn()', () => {
            done();
          }, 500);
        });
-    it('should should should exec onError callback when worker throw error',
+    it('should exec onError callback when worker throw error',
        done => {
          let thread = Core.spawn('/base/test/error_worker.js');
          let onError = sinon.spy();
          thread.subscribe(() => {}, onError);
          window.setTimeout(() => {
            expect(onError.called).to.equal(true);
+           done();
+         }, 500);
+       });
+  });
+  describe('stop()', () => {
+    it('should exec onComplete callback when worker is closed',
+       done => {
+         let thread = Core.spawn('/base/test/counter_worker.js');
+         let onComplete = sinon.spy();
+         thread.subscribe(() => {}, () => {}, onComplete);
+         thread.stop();
+         window.setTimeout(() => {
+           expect(onComplete.called).to.equal(true);
            done();
          }, 500);
        });
