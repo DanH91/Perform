@@ -21045,7 +21045,7 @@ $__System.registerDynamic("1a2", [], true, function($__require, exports, module)
       GLOBAL = this;
   module.exports = {
     "name": "performJs",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "reactive web worker library",
     "main": "perform.js",
     "directories": {"test": "test"},
