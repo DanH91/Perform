@@ -26,17 +26,19 @@ function spawn(script) {
   let observer = new Rx.Subject();
   w.onmessage = _Callback;
   let ctx = {
-    map
+    subscribe
   };
   return ctx;
 
   /**
    * Map over stream of worker event data.
-   * @param  {function} callback .
+   * @param  {function} onNext - on next value callback.
+   * @param  {function} onError - on error value callback .
+   * @param  {function} onComplete  - on complete value callback.
    * @return {object} token - subscription token.
    */
-  function map(callback) {
-    return observer.subscribe(callback);
+  function subscribe(onNext, onError, onComplete) {
+    return observer.subscribe(onNext, onError, onComplete);
   }
 
   /**
