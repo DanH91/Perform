@@ -9,7 +9,7 @@ describe('Core', () => {
 
   // timeout failure is expected if the function don't work properly
   it('should create (initialize) a new worker', function(done) {
-    let thread = Core.create('/base/test/worker_script.js');
+    let thread = Core.spawn('/base/test/worker_script.js');
     let spy = sinon.spy();
     thread.subscribe(spy);
     window.setTimeout(function() {

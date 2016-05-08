@@ -3,16 +3,16 @@ import _ from 'lodash-fp';
 export default (() => {
   return {
     initialize,
-    create
+    spawn
   };
 })();
 
 /**
-  * Create a work.
+  * Spawn a dedicated worker.
   * @param  {string} script - worker script.
-  * @return {object} taskHandler  -  worker wrapper object.
+  * @return {object} worker wrapper  -  worker wrapper object.
   */
-function create(script) {
+function spawn(script) {
   let w = new Worker(script);
   return {
     subscribe(callback) {
