@@ -27,15 +27,24 @@ function spawn(script) {
   w.onmessage = _Next;
   w.onerror = _Error;
   let ctx = {
-    subscribe
+    subscribe,
+    stop
   };
   return ctx;
 
   /**
+   * Terminate worker and complete observable.
+   */
+  function stop() {
+    w.terminate();
+    observer.complete();
+  }
+
+  /**
    * Map over stream of worker event data.
    * @param  {function} onNext - on next value callback.
-   * @param  {function} onError - on error value callback .
-   * @param  {function} onComplete  - on complete value callback.
+   * @param  {function} onError - on error value callback.
+   * @param  {function} onComplete - on complete value callback.
    * @return {object} token - subscription token.
    */
   function subscribe(onNext, onError, onComplete) {
