@@ -1,21 +1,30 @@
 import _ from 'lodash-fp';
 
-export default (()=>{
-    return {
-	Initialize,
-	create
-    };
+export default (() => {
+  return {
+    initialize,
+    create
+  };
 })();
 
-function create(script){
-    let w = new window.Worker(script);
-    return {
-	subscribe(callback){
-	    w.onmessage = callback;
-	}
-    };
+/**
+  * Create a work.
+  * @param  {string} script - worker script.
+  * @return {object} taskHandler  -  worker wrapper object.
+  */
+function create(script) {
+  let w = new Worker(script);
+  return {
+    subscribe(callback) {
+      w.onmessage = callback;
+    }
+  };
 }
 
-function Initialize(){
-    return _.isFunction(window.Worker);
+/**
+ * Check worker support
+ * @return {Bool} suppport
+ */
+function initialize() {
+  return _.isFunction(Worker);
 }

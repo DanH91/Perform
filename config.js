@@ -19,6 +19,7 @@ System.config({
     "chai": "npm:chai@3.5.0",
     "core-js": "npm:core-js@1.2.6",
     "lodash-fp": "npm:lodash-fp@0.10.4",
+    "mocha": "npm:mocha@2.4.5",
     "sinon": "npm:sinon@1.17.4",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -79,6 +80,9 @@ System.config({
     },
     "npm:lodash-fp@0.10.4": {
       "lodash-compat": "npm:lodash-compat@3.10.2"
+    },
+    "npm:mocha@2.4.5": {
+      "css": "github:systemjs/plugin-css@0.1.21"
     },
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"

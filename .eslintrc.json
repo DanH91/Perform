@@ -1,0 +1,11 @@
+{
+  "extends": "google",
+  "installedESLint": true,
+  "globals": {
+    "window": true,
+    "self": true,
+    "Worker": true,
+    "describe": true,
+    "it": true
+  }
+}

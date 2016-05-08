@@ -1,7 +1,11 @@
 {
+  "scripts": {
+    "test": "eslint ./src && eslint ./test && karma start"
+  },
   "jspm": {
     "dependencies": {
       "lodash-fp": "npm:lodash-fp@^0.10.4",
+      "mocha": "npm:mocha@^2.4.5",
       "sinon": "npm:sinon@^1.17.4"
     },
     "devDependencies": {
@@ -13,6 +17,8 @@
   },
   "devDependencies": {
     "chai": "^3.4.0",
+    "eslint": "^2.9.0",
+    "eslint-config-google": "^0.5.0",
     "jspm": "^0.16.13",
     "karma": "^0.13.14",
     "karma-chrome-launcher": "^0.2.1",
