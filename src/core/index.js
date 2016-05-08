@@ -23,7 +23,7 @@ function initialize() {
   */
 function spawn(script) {
   let w = new window.Worker(script);
-  let observer = new Rx.Subject();
+  let observer = new Rx.ReplaySubject(1);
   w.onmessage = _Next;
   w.onerror = _Error;
   let ctx = {

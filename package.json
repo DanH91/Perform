@@ -1,10 +1,24 @@
 {
+  "name": "performJs",
+  "version": "0.0.1",
+  "description": "reactive web worker library",
+  "main": "perform.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "eslint ./src && eslint ./test && karma start",
-    "doc": "jsdoc ./src/**/*.js"
+    "doc": "jsdoc ./src/**/*.js",
+    "build": "npm run bundle && npm run bundle_min",
+    "bundle": "jspm bundle src/index.js perform.js --skip-source-maps --inject",
+    "bundle_min": "jspm bundle src/index.js perform.min.js --skip-source-maps --inject --minify"
   },
   "jspm": {
+    "directories": {
+      "test": "test"
+    },
     "dependencies": {
+      "json": "github:systemjs/plugin-json@^0.1.2",
       "lodash-fp": "npm:lodash-fp@^0.10.4",
       "mocha": "npm:mocha@^2.4.5",
       "rxjs": "npm:rxjs@^5.0.0-beta.7",
@@ -30,5 +44,20 @@
     "mocha": "^2.3.3",
     "sinon": "^1.17.4"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanH91/PerformJs.git"
+  },
+  "keywords": [
+    "task",
+    "async",
+    "reactive"
+  ],
+  "author": "DanH91",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanH91/PerformJs/issues"
+  },
+  "homepage": "https://github.com/DanH91/PerformJs#readme"
 }
