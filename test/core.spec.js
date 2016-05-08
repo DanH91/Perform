@@ -17,7 +17,7 @@ describe('spawn()', () => {
   describe('subscribe()', () => {
     it('should should subscribe callback function to worker message event',
        done => {
-         let thread = Core.spawn('/base/test/simple_worker.js');
+         let thread = Core.spawn('/base/worker_scripts/simple_worker.js');
          let spy = sinon.spy();
          thread.subscribe(spy);
          window.setTimeout(() => {
@@ -27,7 +27,7 @@ describe('spawn()', () => {
        });
     it('should exec onError callback when worker throw error',
        done => {
-         let thread = Core.spawn('/base/test/error_worker.js');
+         let thread = Core.spawn('/base/worker_scripts/error_worker.js');
          let onError = sinon.spy();
          thread.subscribe(() => {}, onError);
          window.setTimeout(() => {
@@ -39,7 +39,7 @@ describe('spawn()', () => {
   describe('stop()', () => {
     it('should exec onComplete callback when worker is closed',
        done => {
-         let thread = Core.spawn('/base/test/counter_worker.js');
+         let thread = Core.spawn('/base/worker_scripts/counter_worker.js');
          let onComplete = sinon.spy();
          thread.subscribe(() => {}, () => {}, onComplete);
          thread.stop();
