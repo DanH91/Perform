@@ -10,8 +10,8 @@
     "test": "eslint ./src && eslint ./test && karma start",
     "doc": "jsdoc ./src/**/*.js",
     "build": "npm run bundle && npm run bundle_min",
-    "bundle": "jspm bundle src/index.js perform.js --skip-source-maps --inject",
-    "bundle_min": "jspm bundle src/index.js perform.min.js --skip-source-maps --inject --minify"
+    "bundle": "jspm bundle-sfx src/index.js perform.js --skip-source-maps --inject",
+    "bundle_min": "jspm bundle-sfx src/index.js perform.min.js --skip-source-maps --inject --minify"
   },
   "jspm": {
     "directories": {

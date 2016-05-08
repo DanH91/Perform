@@ -6,3 +6,5 @@ export let Perform = _.assign({
   version: config.version,
   author: config.author
 }, Core);
+
+window.Perform = Perform;
