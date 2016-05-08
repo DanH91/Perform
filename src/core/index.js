@@ -24,7 +24,8 @@ function initialize() {
 function spawn(script) {
   let w = new window.Worker(script);
   let observer = new Rx.Subject();
-  w.onmessage = _Callback;
+  w.onmessage = _Next;
+  w.onerror = _Error;
   let ctx = {
     subscribe
   };
@@ -45,7 +46,15 @@ function spawn(script) {
    * Worker message event callback.
    * @param  {object} event .
    */
-  function _Callback(event) {
+  function _Next(event) {
     observer.next(event.data);
+  }
+
+  /**
+   * Worker error event callback.
+   * @param {object} event .
+   */
+  function _Error(event) {
+    observer.error(event.data);
   }
 }
