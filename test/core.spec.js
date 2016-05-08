@@ -17,11 +17,21 @@ describe('spawn()', () => {
   describe('subscribe()', () => {
     it('should should subscribe callback function to worker message event',
        done => {
-         let thread = Core.spawn('/base/test/worker_script.js');
+         let thread = Core.spawn('/base/test/simple_worker.js');
          let spy = sinon.spy();
          thread.subscribe(spy);
          window.setTimeout(() => {
            expect(spy.called).to.equal(true);
+           done();
+         }, 500);
+       });
+    it('should should should exec onError callback when worker throw error',
+       done => {
+         let thread = Core.spawn('/base/test/error_worker.js');
+         let onError = sinon.spy();
+         thread.subscribe(() => {}, onError);
+         window.setTimeout(() => {
+           expect(onError.called).to.equal(true);
            done();
          }, 500);
        });
