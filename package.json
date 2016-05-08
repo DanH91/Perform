@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "eslint ./src && eslint ./test && karma start"
+    "test": "eslint ./src && eslint ./test && karma start",
+    "doc": "jsdoc ./src/**/*.js"
   },
   "jspm": {
     "dependencies": {
