@@ -64,6 +64,6 @@ function spawn(script) {
    * @param {object} event .
    */
   function _Error(event) {
-    observer.error(event.data);
+    observer.error(new Error(event.message));
   }
 }
