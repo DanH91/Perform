@@ -3,7 +3,7 @@ import create from './create';
 
 /**
   * Spawn a dedicated worker.
-  * @param  {string} script - worker script.
+  * @param  {(string|function)} script - worker script.
   * @return {object} worker wrapper  -  worker wrapper object.
   */
 export default function spawn(script) {
@@ -12,10 +12,19 @@ export default function spawn(script) {
   w.onmessage = _Next;
   w.onerror = _Error;
   let ctx = {
-    subscribe,
-    stop
+    dispatch,
+    stop,
+    subscribe
   };
   return ctx;
+
+  /**
+   * Dispatch data to worker.
+   * @param  {*} data - message content.
+   */
+  function dispatch(data) {
+    w.postMessage(JSON.stringify(data));
+  }
 
   /**
    * Terminate worker and complete subject.
