@@ -1,18 +1,10 @@
 import _ from 'lodash-fp';
-
-import spawn from './spawn';
-
-export default (() => {
-  return {
-    initialize,
-    spawn
-  };
-})();
+export {spawn} from './spawn';
 
 /**
  * Check worker support
  * @return {Bool} suppport
  */
-function initialize() {
+export function initialize() {
   return _.isFunction(window.Worker);
 }

@@ -53,12 +53,12 @@ describe('spawn()', () => {
        });
   });
   describe('stop()', () => {
-    it('should exec onComplete callback when worker is closed',
+    it('should exec onComplete callback when task is disposed',
        done => {
          let task = spawn('/base/worker_scripts/counter_worker.js');
          let onComplete = sinon.spy();
          task.subscribe(() => {}, () => {}, onComplete);
-         task.stop();
+         task.dispose();
          window.setTimeout(() => {
            expect(onComplete.called).to.equal(true);
            done();
@@ -82,7 +82,7 @@ describe('spawn()', () => {
          });
          window.setTimeout(() => {
            expect(onNext.called).to.equal(true);
-           task.stop();
+           task.dispose();
            done();
          }, 500);
        });

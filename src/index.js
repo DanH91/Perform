@@ -1,5 +1,5 @@
 import _ from 'lodash-fp';
-import Core from './core/index';
+import * as Core from './core/index';
 
 export let Perform = _.assign({
   version: "0.0.19",
