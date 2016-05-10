@@ -65,4 +65,26 @@ describe('spawn()', () => {
          }, 500);
        });
   });
+  describe('dispatch()', () => {
+    let echoScript = function() {
+      self.onmessage = function(data) {
+        console.log(data.data);
+        self.postMessage(data.data);
+      };
+    };
+    it('should send message data to worker',
+       done => {
+         let task = spawn(echoScript);
+         let onNext = sinon.spy();
+         task.subscribe(onNext);
+         task.dispatch({
+           name: 'name', list: [1, 2, 4], count: 5, meth: function() {}
+         });
+         window.setTimeout(() => {
+           expect(onNext.called).to.equal(true);
+           task.stop();
+           done();
+         }, 500);
+       });
+  });
 });
