@@ -3,8 +3,35 @@ import sinon from 'sinon';
 import spawn from '../src/core/spawn';
 
 describe('spawn()', () => {
+  let script = function() {
+    /** */
+    function timedMessage() {
+      self.postMessage("Echo");
+    }
+    timedMessage();
+  };
+  it('should spawn a new worker from worker script file giving a path',
+     done => {
+       let task = spawn('/base/worker_scripts/simple_worker.js');
+       let spy = sinon.spy();
+       task.subscribe(spy);
+       window.setTimeout(() => {
+         expect(spy.called).to.equal(true);
+         done();
+       }, 500);
+     });
+  it('should spawn a new worker from worker script function',
+     done => {
+       let task = spawn(script);
+       let spy = sinon.spy();
+       task.subscribe(spy);
+       window.setTimeout(() => {
+         expect(spy.called).to.equal(true);
+         done();
+       }, 500);
+     });
   describe('subscribe()', () => {
-    it('should should subscribe callback function to worker message event',
+    it('should subscribe callback function to worker message event',
        done => {
          let task = spawn('/base/worker_scripts/simple_worker.js');
          let spy = sinon.spy();
