@@ -1,4 +1,5 @@
 import Rx from 'rxjs';
+import create from './create';
 
 /**
   * Spawn a dedicated worker.
@@ -6,8 +7,8 @@ import Rx from 'rxjs';
   * @return {object} worker wrapper  -  worker wrapper object.
   */
 export default function spawn(script) {
-  let w = new window.Worker(script);
-  let observer = new Rx.Subject();
+  let w = create(script);
+  let subject = new Rx.Subject();
   w.onmessage = _Next;
   w.onerror = _Error;
   let ctx = {
@@ -17,11 +18,11 @@ export default function spawn(script) {
   return ctx;
 
   /**
-   * Terminate worker and complete observable.
+   * Terminate worker and complete subject.
    */
   function stop() {
     w.terminate();
-    observer.complete();
+    subject.complete();
   }
 
   /**
@@ -32,7 +33,7 @@ export default function spawn(script) {
    * @return {object} token - subscription token.
    */
   function subscribe(onNext, onError, onComplete) {
-    return observer.subscribe(onNext, onError, onComplete);
+    return subject.subscribe(onNext, onError, onComplete);
   }
 
   /**
@@ -40,7 +41,7 @@ export default function spawn(script) {
    * @param  {object} event .
    */
   function _Next(event) {
-    observer.next(event.data);
+    subject.next(event.data);
   }
 
   /**
@@ -48,6 +49,6 @@ export default function spawn(script) {
    * @param {object} event .
    */
   function _Error(event) {
-    observer.error(new Error(event.message));
+    subject.error(new Error(event.message));
   }
 }
