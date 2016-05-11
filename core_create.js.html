@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: core/create.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,50 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: core/create.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {isFunction} from 'lodash-fp';
 
+/**
+  * Spawn a dedicated worker.
+  * @param  {(string | function)} script - worker script.
+  * @return {object} worker - spawned worker.
+  */
+export default function create(script) {
+  return new window.Worker(
+    isFunction(script) ? createScript(script) : script
+  );
+}
 
-    <h3> </h3>
+/**
+  * Create Tranferable script.
+  * @param  {string} script - worker script.
+  * @return {string} objectURL - object URL of script Blob.
+  */
+export function createScript(script) {
+  return createTransferable(
+    script.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1]
+  );
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+  * Create ObjectURL from Blob.
+  * @param  {string} text - worker script.
+  * @return {string} objectURL  - object URL of script Blob.
+  */
+export function createTransferable(text) {
+  return window.URL.createObjectURL(new window.Blob([`${text}`]));
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
