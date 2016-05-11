@@ -49,6 +49,13 @@ export function observable(state) {
      */
     subscribe(onNext, onError, onComplete) {
       return state.subject.subscribe(onNext, onError, onComplete);
+    },
+    /**
+     * expose observable subject.
+     * @return {object} subject
+     */
+    observe() {
+      return state.subject;
     }
   };
 }
