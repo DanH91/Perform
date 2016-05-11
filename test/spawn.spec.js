@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
-import spawn from '../src/core/spawn';
+import {spawn} from '../src/core/spawn';
 
 describe('spawn()', () => {
   let script = function() {
