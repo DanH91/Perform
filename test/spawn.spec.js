@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
+import _ from 'lodash-fp';
 import {spawn} from '../src/core/spawn';
 
 describe('spawn()', () => {
@@ -63,6 +64,23 @@ describe('spawn()', () => {
            expect(onComplete.called).to.equal(true);
            done();
          }, 500);
+       });
+  });
+  describe('observe()', () => {
+    it('should expose observable for source filtering customization',
+       done => {
+         let task = spawn('/base/worker_scripts/counter_worker.js');
+         let filter = count => count % 2 === 0;
+         let list = [];
+         let source = task.observe().filter(filter);
+         source.subscribe(i => {
+           list.push(i);
+         });
+         window.setTimeout(() => {
+           expect(_.filter(filter, list)).to.eql(list);
+           task.dispose();
+           done();
+         }, 600);
        });
   });
   describe('dispatch()', () => {
