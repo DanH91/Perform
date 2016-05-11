@@ -1,5 +1,5 @@
 import _ from 'lodash-fp';
-export {spawn} from './spawn';
+export * from './spawn';
 
 /**
  * Check worker support

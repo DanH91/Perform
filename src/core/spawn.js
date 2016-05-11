@@ -7,7 +7,7 @@ import {disposable, observable, canDispatch} from '../common/index';
   * @param  {(string|function)} script - worker script.
   * @return {object} worker wrapper  -  worker wrapper object.
  */
-export default function spawn(script) {
+export function spawn(script) {
   let state = {
     w: create(script),
     subject: new Rx.Subject()
