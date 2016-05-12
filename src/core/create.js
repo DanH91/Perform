@@ -1,24 +1,29 @@
-import {isFunction} from 'lodash-fp';
+import {isString, map, last} from 'lodash-fp';
 
 /**
   * Spawn a dedicated worker.
-  * @param  {(string | function)} script - worker script.
+  * @param  {(string | [function])} script - worker script.
   * @return {object} worker - spawned worker.
   */
 export default function create(script) {
   return new window.Worker(
-    isFunction(script) ? createScript(script) : script
+    isString(script) ? script : createScript(script)
   );
 }
 
 /**
   * Create Tranferable script.
-  * @param  {string} script - worker script.
+  * @param  {[function]} scripts - worker script.
   * @return {string} objectURL - object URL of script Blob.
   */
-export function createScript(script) {
+export function createScript(scripts) {
   return createTransferable(
-    script.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1]
+    map(script => {
+      if (last([].concat(scripts)) === script) {
+        return script.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1];
+      }
+      return script.toString();
+    }, [].concat(scripts)).join('\n')
   );
 }
 

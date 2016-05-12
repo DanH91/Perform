@@ -4,7 +4,7 @@ import {disposable, observable, canDispatch} from '../common/index';
 
 /**
   * Spawn a dedicated worker.
-  * @param  {(string|function)} script - worker script.
+  * @param  {(string|[function])} script - worker script.
   * @return {object} worker wrapper  -  worker wrapper object.
  */
 export function spawn(script) {
