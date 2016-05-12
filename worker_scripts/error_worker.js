@@ -3,6 +3,6 @@ self.postMessage('pong');
 
 /** */
 function triggerError() {
-  throw new Error("trigger error!");
+  throw new Error("error message!");
 }
 triggerError();
