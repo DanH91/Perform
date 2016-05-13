@@ -4,13 +4,13 @@ import {disposable, observable, canDispatch} from '../common/index';
 
 /**
   * Spawn a dedicated worker.
-  * @param  {(string|[function])} script - worker script.
+  * @param  {string|function|[function]|[string..., function]} script - worker script.
   * @return {object} worker wrapper  -  worker wrapper object.
  */
 export function spawn(script) {
   let state = {
     w: create(script),
-    subject: new Rx.Subject()
+    subject: new Rx.ReplaySubject(1)
   };
 
   state.w.onmessage = _Next;
