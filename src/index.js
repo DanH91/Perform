@@ -2,7 +2,7 @@ import {assign} from 'lodash-fp';
 import * as Core from './core/index';
 
 export let Perform = assign({
-  version: "0.0.20",
+  version: "0.0.21",
   author: "Danh91"
 }, Core);
 
