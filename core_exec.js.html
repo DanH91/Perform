@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: core/spawn.js</title>
+    <title>JSDoc: Source: core/exec.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: core/spawn.js</h1>
+    <h1 class="page-title">Source: core/exec.js</h1>
 
     
 
@@ -26,47 +26,26 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Rx from 'rxjs';
-import create from './create';
-import {disposable, observable, canDispatch} from '../common/index';
+            <pre class="prettyprint source linenums"><code>import {spawn} from './spawn';
 
 /**
-  * Spawn a dedicated worker.
-  * @param  {string|Array} script - js file or an array of functions and or strings.
-  * @return {object} worker wrapper  -  worker wrapper object.
+ * @param {function} executable - function to execute
+ * @param {Array} params - arguments to pass to the function
+ * @param {function[]} dependencies - functions required for the execution
+ * @return {Object} job - observable job.
  */
-export function spawn(script) {
-  let state = {
-    w: create(script),
-    subject: new Rx.ReplaySubject(1)
-  };
-
-  state.w.onmessage = _Next;
-  state.w.onerror = _Error;
-
-  let ctx = Object.assign(
-    {},
-    disposable(state),
-    observable(state),
-    canDispatch(state)
-  );
-  return ctx;
-
-  /**
-   * Worker message event callback.
-   * @param  {object} event .
-   */
-  function _Next(event) {
-    state.subject.next(event.data);
-  }
-
-  /**
-   * Worker error event callback.
-   * @param {object} event .
-   */
-  function _Error(event) {
-    state.subject.error(new Error(event.message));
-  }
+export function exec(executable, params = [], dependencies = []) {
+  let bundle = dependencies.concat(['self.run = ', executable, function() {
+    self.onmessage = function(event) {
+      self.postMessage(
+	self.run.apply(null, JSON.parse(event.data))
+      );
+    };
+  }]);
+  let job = spawn(bundle);
+  job.dispatch(params);
+  job.subscribe(job.dispose);
+  return job;
 }
 </code></pre>
         </article>
