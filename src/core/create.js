@@ -2,7 +2,7 @@ import {isString, isFunction, map, last} from 'lodash-fp';
 
 /**
   * Spawn a dedicated worker.
-  * @param  {(string | [function])} script - worker script.
+  * @param  {string|Array} script - js file or an array of functions and or strings.
   * @return {object} worker - spawned worker.
   */
 export default function create(script) {
@@ -13,11 +13,11 @@ export default function create(script) {
 
 /**
   * Create Tranferable script.
-  * @param  {[function]} scripts - worker script.
+  * @param  {function[]} scripts - worker script.
   * @return {string} objectURL - object URL of script Blob.
   */
 export function createScript(scripts) {
-  return createTransferable(
+  return createTransferrable(
     map(script => {
       if (last([].concat(scripts)) === script && isFunction(script)) {
         return script.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1];
@@ -32,6 +32,6 @@ export function createScript(scripts) {
   * @param  {string} text - worker script.
   * @return {string} objectURL  - object URL of script Blob.
   */
-export function createTransferable(text) {
+export function createTransferrable(text) {
   return self.URL.createObjectURL(new self.Blob([`${text}`]));
 }
