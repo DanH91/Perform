@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import create, {createTransferable} from '../src/core/create';
+import create, {createTransferrable} from '../src/core/create';
 
 describe('create()', () => {
   let script = function() {
@@ -18,9 +18,9 @@ describe('create()', () => {
     expect(worker instanceof window.Worker).to.equal(true);
   });
 
-  describe('createTransferable()', () => {
+  describe('createTransferrable()', () => {
     it('should create an ObjectURL giving a script', () => {
-      let transferable = createTransferable(script);
+      let transferable = createTransferrable(script);
       expect(transferable).to.be.a('string');
     });
   });
