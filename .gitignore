@@ -37,3 +37,5 @@ jspm_packages
 
 #jsDoc generated documentation
 out
+
+.karma
