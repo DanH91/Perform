@@ -1,13 +1,15 @@
 {
   "name": "performJs",
-  "version": "0.0.21",
+  "version": "0.0.22-semantically-released",
   "description": "reactive web worker library",
   "main": "perform.js",
   "scripts": {
     "test": "eslint ./src && eslint ./test && karma start",
     "doc": "jsdoc ./src/**/*.js",
     "build": "npm run bundle",
-    "bundle": "jspm bundle-sfx src/index.js perform.js --skip-source-maps --inject --minify"
+    "bundle": "jspm bundle-sfx src/index.js perform.js --skip-source-maps --inject --minify",
+    "commit": "git-cz",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "jspm": {
     "dependencies": {
@@ -26,6 +28,8 @@
   },
   "devDependencies": {
     "chai": "^3.4.0",
+    "commitizen": "^2.8.1",
+    "cz-conventional-changelog": "^1.1.6",
     "eslint": "^2.9.0",
     "eslint-config-google": "^0.5.0",
     "jspm": "^0.16.13",
@@ -35,12 +39,13 @@
     "karma-mocha": "^1.0.1",
     "karma-mocha-reporter": "^2.0.3",
     "mocha": "^2.4.5",
+    "semantic-release": "^4.3.5",
     "sinon": "^1.17.4"
   },
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanH91/PerformJs.git"
+    "url": "https://github.com/DanH91/PerformJs.git"
   },
   "keywords": [
     "task",
@@ -52,5 +57,8 @@
   "bugs": {
     "url": "https://github.com/DanH91/PerformJs/issues"
   },
-  "homepage": "https://github.com/DanH91/PerformJs#readme"
+  "homepage": "https://github.com/DanH91/PerformJs#readme",
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
+  }
 }
