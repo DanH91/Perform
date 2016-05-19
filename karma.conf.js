@@ -2,6 +2,9 @@
 // Generated on Tue Oct 27 2015 04:30:31 GMT-0400 (EDT)
 
 module.exports = function(config) {
+  if (process.env.TRAVIS) {
+    config.browsers = ['Chrome_travis_ci'];
+  }
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -62,6 +65,13 @@ module.exports = function(config) {
       name: 'Service-Worker-Allowed',
       value: '/'
     }],
+
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
