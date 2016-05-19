@@ -1,6 +1,5 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
-import _ from 'lodash-fp';
 import {spawn} from '../src/core/spawn';
 
 describe('spawn()', () => {
@@ -87,7 +86,7 @@ describe('spawn()', () => {
          let source = task.observe().filter(filter);
          source.subscribe(list.push);
          window.setTimeout(() => {
-           expect(_.filter(filter, list)).to.eql(list);
+           expect(list.filter(filter)).to.eql(list);
            task.dispose();
            done();
          }, 60);
