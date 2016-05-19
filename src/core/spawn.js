@@ -1,4 +1,4 @@
-import Rx from 'rxjs';
+import Rx from 'rx-lite';
 import create from './create';
 import {disposable, observable, canDispatch} from '../common/index';
 
@@ -29,7 +29,7 @@ export function spawn(script) {
    * @param  {object} event .
    */
   function _Next(event) {
-    state.subject.next(event.data);
+    state.subject.onNext(event.data);
   }
 
   /**
@@ -37,6 +37,6 @@ export function spawn(script) {
    * @param {object} event .
    */
   function _Error(event) {
-    state.subject.error(new Error(event.message));
+    state.subject.onError(new Error(event.message));
   }
 }

@@ -12,10 +12,10 @@ export function exec(executable, params = [], dependencies = []) {
       self.postMessage(
 	self.run.apply(null, JSON.parse(event.data))
       );
+      self.close();
     };
   }]);
   let job = spawn(bundle);
   job.dispatch(params);
-  job.subscribe(job.dispose);
   return job;
 }

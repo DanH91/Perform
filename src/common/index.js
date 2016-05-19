@@ -28,7 +28,7 @@ export function disposable(state) {
      */
     dispose() {
       state.w.terminate();
-      state.subject.complete();
+      state.subject.onCompleted();
     }
   };
 }

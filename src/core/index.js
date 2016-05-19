@@ -1,4 +1,4 @@
-import _ from 'lodash-fp';
+import isFunction from 'lodash.isfunction';
 export * from './spawn';
 export * from './exec';
 
@@ -7,5 +7,5 @@ export * from './exec';
  * @return {Bool} suppport
  */
 export function initialize() {
-  return _.isFunction(window.Worker);
+  return isFunction(window.Worker);
 }

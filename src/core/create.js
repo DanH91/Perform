@@ -1,4 +1,6 @@
-import {isString, isFunction, map, last} from 'lodash-fp';
+import isString from 'lodash.isstring';
+import last from 'lodash.last';
+import isFunction from 'lodash.isfunction';
 
 /**
   * Spawn a dedicated worker.
@@ -17,13 +19,14 @@ export default function create(script) {
   * @return {string} objectURL - object URL of script Blob.
   */
 export function createScript(scripts) {
+  let list = [].concat(scripts);
   return createTransferrable(
-    map(script => {
-      if (last([].concat(scripts)) === script && isFunction(script)) {
+    list.map(script => {
+      if (last(list) === script && isFunction(script)) {
         return script.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1];
       }
       return script.toString();
-    }, [].concat(scripts)).join('\n')
+    }).join('\n')
   );
 }
 
