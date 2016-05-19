@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>PerformJs Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1" />
+    <style>
+     .task { font-size: 13px; min-height: 75px; }
+     .title { font-size: 16px; }
+     .content { width: 420px; display: inline-block; height: 100%; }
+     .card {
+       width:80%; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s;
+       margin: auto;
+     }
+     .card:hover { box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); }
+     .container { padding: 2px 16px; }
+     .canvas-container { width: 452px; margin: auto; }
+    </style>
+  </head>
+
+  <body>
+    
+    <div class="card">
+      <div class="container" id="demo1">
+	<p class="title">Demo 1</p>
+
+	<div>
+	  <div class="content">
+	    <span>Synchronous tasks</span>
+	    <div class="task"></div>
+	    <br/><br/>
+	    <button onclick="Demo.sync()">Start</button>
+	  </div>
+	  
+	  <div class="content">
+	    <span>Asynchronous tasks</span>
+	    <div class="task"></div>
+	    <br/><br/>
+	    <button onclick="Demo.task()">Start</button>
+	  </div>
+	  
+	</div>
+	
+	<br/>
+	<button onclick="Demo.clear()">Clear</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="container" id="demo2">
+	<p class="title">Demo 2</p>
+
+	<div class="canvas-container">
+	  <canvas id="myCanvas" width="450" height="310"></canvas>
+	</div>
+      </div>
+    </div>
+    
+    <script src="./../perform.js"></script>
+    <script src="demo.js"></script>
+  </body>
+
+</html>
