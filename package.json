@@ -1,6 +1,6 @@
 {
   "name": "performJs",
-  "version": "0.0.22-semantically-released",
+  "version": "0.0.23-semantically-released",
   "description": "reactive web worker library",
   "main": "perform.js",
   "scripts": {
@@ -15,8 +15,7 @@
     "dependencies": {
       "lodash.isfunction": "npm:lodash.isfunction@^3.0.8",
       "lodash.isstring": "npm:lodash.isstring@^4.0.1",
-      "lodash.last": "npm:lodash.last@^3.0.0",
-      "rx-lite": "npm:rx-lite@^4.0.8"
+      "lodash.last": "npm:lodash.last@^3.0.0"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",

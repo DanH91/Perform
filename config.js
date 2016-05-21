@@ -862,7 +862,6 @@ System.config({
     "lodash.isfunction": "npm:lodash.isfunction@3.0.8",
     "lodash.isstring": "npm:lodash.isstring@4.0.1",
     "lodash.last": "npm:lodash.last@3.0.0",
-    "rx-lite": "npm:rx-lite@4.0.8",
     "sinon": "npm:sinon@1.17.4",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.0"
@@ -930,9 +929,6 @@ System.config({
     },
     "npm:process@0.11.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
-    },
-    "npm:rx-lite@4.0.8": {
-      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:sinon@1.17.4": {
       "formatio": "npm:formatio@1.1.1",

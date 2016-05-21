@@ -1,4 +1,3 @@
-import Rx from 'rx-lite';
 import create from './create';
 import {disposable, observable, canDispatch} from '../common/index';
 
@@ -10,7 +9,7 @@ import {disposable, observable, canDispatch} from '../common/index';
 export function spawn(script) {
   let state = {
     w: create(script),
-    subject: new Rx.ReplaySubject(1)
+    subscribers: []
   };
 
   state.w.onmessage = _Next;
@@ -29,14 +28,16 @@ export function spawn(script) {
    * @param  {object} event .
    */
   function _Next(event) {
-    state.subject.onNext(event.data);
+    state.subscribers.map(subscriber => subscriber.onNext(event.data));
   }
 
   /**
    * Worker error event callback.
-   * @param {object} event .
+   * @param {object} error .
    */
-  function _Error(event) {
-    state.subject.onError(new Error(event.message));
+  function _Error(error) {
+    state.subscribers.map(
+      subscriber => subscriber.onError(new Error(error.message))
+    );
   }
 }

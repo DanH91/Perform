@@ -28,7 +28,7 @@ export function disposable(state) {
      */
     dispose() {
       state.w.terminate();
-      state.subject.onCompleted();
+      state.subscribers.map(subscriber => subscriber.onComplete());
     }
   };
 }
@@ -45,17 +45,19 @@ export function observable(state) {
      * @param  {function} onNext - on next value callback.
      * @param  {function} onError - on error value callback.
      * @param  {function} onComplete - on complete value callback.
-     * @return {object} token - subscription token.
+     * @return {object} Returns subscription token.
      */
-    subscribe(onNext, onError, onComplete) {
-      return state.subject.subscribe(onNext, onError, onComplete);
-    },
-    /**
-     * expose observable subject.
-     * @return {object} subject
-     */
-    observe() {
-      return state.subject;
+    subscribe(onNext, onError = () => {}, onComplete = () => {}) {
+      let index = state.subscribers.length;
+      state.subscribers.push({onNext, onError, onComplete});
+      return {
+	/**
+	 * Dispose subscription
+	 */
+        dispose() {
+          state.subscribers = state.subscribers.filter((s, i) => i !== index);
+        }
+      };
     }
   };
 }

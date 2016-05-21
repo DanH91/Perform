@@ -77,21 +77,6 @@ describe('spawn()', () => {
          task.dispose();
        });
   });
-  describe('observe()', () => {
-    it('should expose observable for source filtering customization',
-       done => {
-         let task = spawn('/base/worker_scripts/counter_worker.js');
-         let filter = count => count % 2 === 0;
-         let list = [];
-         let source = task.observe().filter(filter);
-         source.subscribe(list.push);
-         window.setTimeout(() => {
-           expect(list.filter(filter)).to.eql(list);
-           task.dispose();
-           done();
-         }, 60);
-       });
-  });
   describe('dispatch()', () => {
     let echoScript = function() {
       self.onmessage = function(data) {
