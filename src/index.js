@@ -7,7 +7,6 @@
 import * as Core from './core/index';
 
 export let Perform = Object.assign({
-  version: "0.0.23",
   author: "Danh91"
 }, Core);
 
